@@ -4,7 +4,7 @@
 #
 Name     : perl-XML-SAX
 Version  : 0.99
-Release  : 6
+Release  : 7
 URL      : http://search.cpan.org/CPAN/authors/id/G/GR/GRANTM/XML-SAX-0.99.tar.gz
 Source0  : http://search.cpan.org/CPAN/authors/id/G/GR/GRANTM/XML-SAX-0.99.tar.gz
 Summary  : ~
@@ -37,6 +37,10 @@ doc components for the perl-XML-SAX package.
 %setup -q -n XML-SAX-0.99
 
 %build
+export http_proxy=http://127.0.0.1:9/
+export https_proxy=http://127.0.0.1:9/
+export no_proxy=localhost,127.0.0.1,0.0.0.0
+export LANG=C
 if test -f Makefile.PL; then
 %{__perl} Makefile.PL
 make V=1  %{?_smp_mflags}
@@ -46,9 +50,10 @@ else
 fi
 
 %check
+export LANG=C
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
-export no_proxy=localhost
+export no_proxy=localhost,127.0.0.1,0.0.0.0
 make TEST_VERBOSE=1 test
 
 %install
@@ -65,26 +70,26 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/site_perl/5.24.0/XML/SAX.pm
-/usr/lib/perl5/site_perl/5.24.0/XML/SAX/DocumentLocator.pm
-/usr/lib/perl5/site_perl/5.24.0/XML/SAX/Intro.pod
-/usr/lib/perl5/site_perl/5.24.0/XML/SAX/ParserFactory.pm
-/usr/lib/perl5/site_perl/5.24.0/XML/SAX/PurePerl.pm
-/usr/lib/perl5/site_perl/5.24.0/XML/SAX/PurePerl/DTDDecls.pm
-/usr/lib/perl5/site_perl/5.24.0/XML/SAX/PurePerl/DebugHandler.pm
-/usr/lib/perl5/site_perl/5.24.0/XML/SAX/PurePerl/DocType.pm
-/usr/lib/perl5/site_perl/5.24.0/XML/SAX/PurePerl/EncodingDetect.pm
-/usr/lib/perl5/site_perl/5.24.0/XML/SAX/PurePerl/Exception.pm
-/usr/lib/perl5/site_perl/5.24.0/XML/SAX/PurePerl/NoUnicodeExt.pm
-/usr/lib/perl5/site_perl/5.24.0/XML/SAX/PurePerl/Productions.pm
-/usr/lib/perl5/site_perl/5.24.0/XML/SAX/PurePerl/Reader.pm
-/usr/lib/perl5/site_perl/5.24.0/XML/SAX/PurePerl/Reader/NoUnicodeExt.pm
-/usr/lib/perl5/site_perl/5.24.0/XML/SAX/PurePerl/Reader/Stream.pm
-/usr/lib/perl5/site_perl/5.24.0/XML/SAX/PurePerl/Reader/String.pm
-/usr/lib/perl5/site_perl/5.24.0/XML/SAX/PurePerl/Reader/URI.pm
-/usr/lib/perl5/site_perl/5.24.0/XML/SAX/PurePerl/Reader/UnicodeExt.pm
-/usr/lib/perl5/site_perl/5.24.0/XML/SAX/PurePerl/UnicodeExt.pm
-/usr/lib/perl5/site_perl/5.24.0/XML/SAX/PurePerl/XMLDecl.pm
+/usr/lib/perl5/site_perl/5.26.0/XML/SAX.pm
+/usr/lib/perl5/site_perl/5.26.0/XML/SAX/DocumentLocator.pm
+/usr/lib/perl5/site_perl/5.26.0/XML/SAX/Intro.pod
+/usr/lib/perl5/site_perl/5.26.0/XML/SAX/ParserFactory.pm
+/usr/lib/perl5/site_perl/5.26.0/XML/SAX/PurePerl.pm
+/usr/lib/perl5/site_perl/5.26.0/XML/SAX/PurePerl/DTDDecls.pm
+/usr/lib/perl5/site_perl/5.26.0/XML/SAX/PurePerl/DebugHandler.pm
+/usr/lib/perl5/site_perl/5.26.0/XML/SAX/PurePerl/DocType.pm
+/usr/lib/perl5/site_perl/5.26.0/XML/SAX/PurePerl/EncodingDetect.pm
+/usr/lib/perl5/site_perl/5.26.0/XML/SAX/PurePerl/Exception.pm
+/usr/lib/perl5/site_perl/5.26.0/XML/SAX/PurePerl/NoUnicodeExt.pm
+/usr/lib/perl5/site_perl/5.26.0/XML/SAX/PurePerl/Productions.pm
+/usr/lib/perl5/site_perl/5.26.0/XML/SAX/PurePerl/Reader.pm
+/usr/lib/perl5/site_perl/5.26.0/XML/SAX/PurePerl/Reader/NoUnicodeExt.pm
+/usr/lib/perl5/site_perl/5.26.0/XML/SAX/PurePerl/Reader/Stream.pm
+/usr/lib/perl5/site_perl/5.26.0/XML/SAX/PurePerl/Reader/String.pm
+/usr/lib/perl5/site_perl/5.26.0/XML/SAX/PurePerl/Reader/URI.pm
+/usr/lib/perl5/site_perl/5.26.0/XML/SAX/PurePerl/Reader/UnicodeExt.pm
+/usr/lib/perl5/site_perl/5.26.0/XML/SAX/PurePerl/UnicodeExt.pm
+/usr/lib/perl5/site_perl/5.26.0/XML/SAX/PurePerl/XMLDecl.pm
 
 %files doc
 %defattr(-,root,root,-)
