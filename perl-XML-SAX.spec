@@ -4,7 +4,7 @@
 #
 Name     : perl-XML-SAX
 Version  : 0.99
-Release  : 9
+Release  : 10
 URL      : http://search.cpan.org/CPAN/authors/id/G/GR/GRANTM/XML-SAX-0.99.tar.gz
 Source0  : http://search.cpan.org/CPAN/authors/id/G/GR/GRANTM/XML-SAX-0.99.tar.gz
 Summary  : ~
