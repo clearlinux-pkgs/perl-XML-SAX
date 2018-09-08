@@ -1,0 +1,4 @@
+1.00
+perl(XML::NamespaceSupport)
+perl(XML::SAX::Base)
+perl(XML::SAX::Exception)

@@ -4,13 +4,14 @@
 #
 Name     : perl-XML-SAX
 Version  : 1.00
-Release  : 12
-URL      : http://search.cpan.org/CPAN/authors/id/G/GR/GRANTM/XML-SAX-1.00.tar.gz
-Source0  : http://search.cpan.org/CPAN/authors/id/G/GR/GRANTM/XML-SAX-1.00.tar.gz
+Release  : 13
+URL      : https://cpan.metacpan.org/authors/id/G/GR/GRANTM/XML-SAX-1.00.tar.gz
+Source0  : https://cpan.metacpan.org/authors/id/G/GR/GRANTM/XML-SAX-1.00.tar.gz
 Summary  : unknown
 Group    : Development/Tools
 License  : Artistic-1.0 GPL-1.0
-Requires: perl-XML-SAX-doc
+Requires: perl-XML-SAX-license
+BuildRequires : buildreq-cpan
 BuildRequires : perl(XML::NamespaceSupport)
 BuildRequires : perl(XML::SAX::Base)
 BuildRequires : perl(XML::SAX::Exception)
@@ -25,12 +26,21 @@ without requiring programmer intervention. Those of you familiar with
 the DBI will be right at home. Some of the designs come from the Java
 JAXP specification (SAX part), only without the javaness.
 
-%package doc
-Summary: doc components for the perl-XML-SAX package.
-Group: Documentation
+%package dev
+Summary: dev components for the perl-XML-SAX package.
+Group: Development
+Provides: perl-XML-SAX-devel
 
-%description doc
-doc components for the perl-XML-SAX package.
+%description dev
+dev components for the perl-XML-SAX package.
+
+
+%package license
+Summary: license components for the perl-XML-SAX package.
+Group: Default
+
+%description license
+license components for the perl-XML-SAX package.
 
 
 %prep
@@ -58,6 +68,8 @@ make TEST_VERBOSE=1 test
 
 %install
 rm -rf %{buildroot}
+mkdir -p %{buildroot}/usr/share/doc/perl-XML-SAX
+cp LICENSE %{buildroot}/usr/share/doc/perl-XML-SAX/LICENSE
 if test -f Makefile.PL; then
 make pure_install PERL_INSTALL_ROOT=%{buildroot}
 else
@@ -91,6 +103,15 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 /usr/lib/perl5/site_perl/5.26.1/XML/SAX/PurePerl/UnicodeExt.pm
 /usr/lib/perl5/site_perl/5.26.1/XML/SAX/PurePerl/XMLDecl.pm
 
-%files doc
+%files dev
 %defattr(-,root,root,-)
-%doc /usr/share/man/man3/*
+/usr/share/man/man3/XML::SAX.3
+/usr/share/man/man3/XML::SAX::DocumentLocator.3
+/usr/share/man/man3/XML::SAX::Intro.3
+/usr/share/man/man3/XML::SAX::ParserFactory.3
+/usr/share/man/man3/XML::SAX::PurePerl.3
+/usr/share/man/man3/XML::SAX::PurePerl::Reader.3
+
+%files license
+%defattr(-,root,root,-)
+/usr/share/doc/perl-XML-SAX/LICENSE
