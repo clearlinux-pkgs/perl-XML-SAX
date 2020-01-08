@@ -4,13 +4,14 @@
 #
 Name     : perl-XML-SAX
 Version  : 1.02
-Release  : 23
+Release  : 24
 URL      : https://cpan.metacpan.org/authors/id/G/GR/GRANTM/XML-SAX-1.02.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/G/GR/GRANTM/XML-SAX-1.02.tar.gz
-Summary  : Simple API for XML
+Summary  : unknown
 Group    : Development/Tools
 License  : Artistic-1.0 GPL-1.0
 Requires: perl-XML-SAX-license = %{version}-%{release}
+Requires: perl-XML-SAX-perl = %{version}-%{release}
 BuildRequires : buildreq-cpan
 BuildRequires : perl(XML::NamespaceSupport)
 BuildRequires : perl(XML::SAX::Base)
@@ -31,7 +32,6 @@ Summary: dev components for the perl-XML-SAX package.
 Group: Development
 Provides: perl-XML-SAX-devel = %{version}-%{release}
 Requires: perl-XML-SAX = %{version}-%{release}
-Requires: perl-XML-SAX = %{version}-%{release}
 
 %description dev
 dev components for the perl-XML-SAX package.
@@ -45,14 +45,24 @@ Group: Default
 license components for the perl-XML-SAX package.
 
 
+%package perl
+Summary: perl components for the perl-XML-SAX package.
+Group: Default
+Requires: perl-XML-SAX = %{version}-%{release}
+
+%description perl
+perl components for the perl-XML-SAX package.
+
+
 %prep
 %setup -q -n XML-SAX-1.02
+cd %{_builddir}/XML-SAX-1.02
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
+export LANG=C.UTF-8
 if test -f Makefile.PL; then
 %{__perl} Makefile.PL
 make  %{?_smp_mflags}
@@ -62,7 +72,7 @@ else
 fi
 
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
@@ -71,7 +81,7 @@ make TEST_VERBOSE=1 test
 %install
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/perl-XML-SAX
-cp LICENSE %{buildroot}/usr/share/package-licenses/perl-XML-SAX/LICENSE
+cp %{_builddir}/XML-SAX-1.02/LICENSE %{buildroot}/usr/share/package-licenses/perl-XML-SAX/ce714346889d1becdd3132cf7380c734a985ecf1
 if test -f Makefile.PL; then
 make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
@@ -84,26 +94,6 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.28.2/XML/SAX.pm
-/usr/lib/perl5/vendor_perl/5.28.2/XML/SAX/DocumentLocator.pm
-/usr/lib/perl5/vendor_perl/5.28.2/XML/SAX/Intro.pod
-/usr/lib/perl5/vendor_perl/5.28.2/XML/SAX/ParserFactory.pm
-/usr/lib/perl5/vendor_perl/5.28.2/XML/SAX/PurePerl.pm
-/usr/lib/perl5/vendor_perl/5.28.2/XML/SAX/PurePerl/DTDDecls.pm
-/usr/lib/perl5/vendor_perl/5.28.2/XML/SAX/PurePerl/DebugHandler.pm
-/usr/lib/perl5/vendor_perl/5.28.2/XML/SAX/PurePerl/DocType.pm
-/usr/lib/perl5/vendor_perl/5.28.2/XML/SAX/PurePerl/EncodingDetect.pm
-/usr/lib/perl5/vendor_perl/5.28.2/XML/SAX/PurePerl/Exception.pm
-/usr/lib/perl5/vendor_perl/5.28.2/XML/SAX/PurePerl/NoUnicodeExt.pm
-/usr/lib/perl5/vendor_perl/5.28.2/XML/SAX/PurePerl/Productions.pm
-/usr/lib/perl5/vendor_perl/5.28.2/XML/SAX/PurePerl/Reader.pm
-/usr/lib/perl5/vendor_perl/5.28.2/XML/SAX/PurePerl/Reader/NoUnicodeExt.pm
-/usr/lib/perl5/vendor_perl/5.28.2/XML/SAX/PurePerl/Reader/Stream.pm
-/usr/lib/perl5/vendor_perl/5.28.2/XML/SAX/PurePerl/Reader/String.pm
-/usr/lib/perl5/vendor_perl/5.28.2/XML/SAX/PurePerl/Reader/URI.pm
-/usr/lib/perl5/vendor_perl/5.28.2/XML/SAX/PurePerl/Reader/UnicodeExt.pm
-/usr/lib/perl5/vendor_perl/5.28.2/XML/SAX/PurePerl/UnicodeExt.pm
-/usr/lib/perl5/vendor_perl/5.28.2/XML/SAX/PurePerl/XMLDecl.pm
 
 %files dev
 %defattr(-,root,root,-)
@@ -116,4 +106,27 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/perl-XML-SAX/LICENSE
+/usr/share/package-licenses/perl-XML-SAX/ce714346889d1becdd3132cf7380c734a985ecf1
+
+%files perl
+%defattr(-,root,root,-)
+/usr/lib/perl5/vendor_perl/5.30.1/XML/SAX.pm
+/usr/lib/perl5/vendor_perl/5.30.1/XML/SAX/DocumentLocator.pm
+/usr/lib/perl5/vendor_perl/5.30.1/XML/SAX/Intro.pod
+/usr/lib/perl5/vendor_perl/5.30.1/XML/SAX/ParserFactory.pm
+/usr/lib/perl5/vendor_perl/5.30.1/XML/SAX/PurePerl.pm
+/usr/lib/perl5/vendor_perl/5.30.1/XML/SAX/PurePerl/DTDDecls.pm
+/usr/lib/perl5/vendor_perl/5.30.1/XML/SAX/PurePerl/DebugHandler.pm
+/usr/lib/perl5/vendor_perl/5.30.1/XML/SAX/PurePerl/DocType.pm
+/usr/lib/perl5/vendor_perl/5.30.1/XML/SAX/PurePerl/EncodingDetect.pm
+/usr/lib/perl5/vendor_perl/5.30.1/XML/SAX/PurePerl/Exception.pm
+/usr/lib/perl5/vendor_perl/5.30.1/XML/SAX/PurePerl/NoUnicodeExt.pm
+/usr/lib/perl5/vendor_perl/5.30.1/XML/SAX/PurePerl/Productions.pm
+/usr/lib/perl5/vendor_perl/5.30.1/XML/SAX/PurePerl/Reader.pm
+/usr/lib/perl5/vendor_perl/5.30.1/XML/SAX/PurePerl/Reader/NoUnicodeExt.pm
+/usr/lib/perl5/vendor_perl/5.30.1/XML/SAX/PurePerl/Reader/Stream.pm
+/usr/lib/perl5/vendor_perl/5.30.1/XML/SAX/PurePerl/Reader/String.pm
+/usr/lib/perl5/vendor_perl/5.30.1/XML/SAX/PurePerl/Reader/URI.pm
+/usr/lib/perl5/vendor_perl/5.30.1/XML/SAX/PurePerl/Reader/UnicodeExt.pm
+/usr/lib/perl5/vendor_perl/5.30.1/XML/SAX/PurePerl/UnicodeExt.pm
+/usr/lib/perl5/vendor_perl/5.30.1/XML/SAX/PurePerl/XMLDecl.pm
