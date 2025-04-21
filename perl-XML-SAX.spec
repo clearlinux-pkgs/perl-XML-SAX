@@ -7,7 +7,7 @@
 #
 Name     : perl-XML-SAX
 Version  : 1.02
-Release  : 40
+Release  : 41
 URL      : https://cpan.metacpan.org/authors/id/G/GR/GRANTM/XML-SAX-1.02.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/G/GR/GRANTM/XML-SAX-1.02.tar.gz
 Summary  : unknown
